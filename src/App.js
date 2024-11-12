@@ -2,6 +2,7 @@ import './App.css';
 import BookDetails from './BookDetails';
 import Cart from './Cart';
 import { useState } from 'react';
+import { books } from './booksData';
 
 const App = () => {
   const [cart, setCart] = useState([]);
@@ -28,40 +29,6 @@ const App = () => {
     }
   };
 
-  const book1 = {
-    title: 'Don Kichote',
-    img: '/images/DonKichote.jpg',
-    author: 'Miguel de Cervantes',
-    lang: 'Polish',
-    pages: '484',
-    price: 15 // Cena książki w dolarach
-  };
-  const book2 = {
-    title: 'Getting Things Done',
-    img: '/images/GTD.jpg',
-    author: 'David Allen',
-    lang: 'English',
-    pages: '271',
-    price: 42 // Cena książki w dolarach
-  };
-  const book3 = {
-    title: 'Menagerial Moment of Truth',
-    img: '/images/MMOT.jpg',
-    author: 'Bruce Bodaken and Robert Fritz',
-    lang: 'English',
-    pages: '249',
-    price: 36 // Cena książki w dolarach
-  };
-
-  const book4 = {
-    title: 'Misja',
-    img: '/images/Misja.jpg',
-    author: 'Michel Desmarquet',
-    lang: 'Polish',
-    pages: '210',
-    price: 39.90 // Cena książki w dolarach
-  };
-
   return (
     <div className="App">
       <header>
@@ -71,10 +38,9 @@ const App = () => {
         <section className='books'>
           <h2>Available titles</h2>
           <section className='booksDescription'>
-            <BookDetails book={book1} addToCart={addToCart} />
-            <BookDetails book={book2} addToCart={addToCart} />
-            <BookDetails book={book3} addToCart={addToCart} />
-            <BookDetails book={book4} addToCart={addToCart} />
+            {books.map((book, index) => (
+              <BookDetails key={index} book={book} addToCart={addToCart} />
+            ))}
           </section>
         </section>
         <section className='cart'>
@@ -83,7 +49,7 @@ const App = () => {
         </section>
       </main>
       <footer>
-        <p>&copy; 2023 React Book Store</p>
+        <p>&copy; 2024 React Book Store</p>
       </footer>
     </div>
   );
